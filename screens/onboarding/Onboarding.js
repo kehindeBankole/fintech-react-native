@@ -6,8 +6,9 @@ import {
   FlatList,
   Dimensions,
   Image,
+  TouchableOpacity,
 } from "react-native";
-import React from "react";
+import React, { useRef } from "react";
 const { width, height } = Dimensions.get("window");
 const slides = [
   {
@@ -32,14 +33,17 @@ const slides = [
 
 export default function Onboarding() {
   const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);
+  const ref = useRef();
   const updateCurrentSlideIndex = (e) => {
     const contentOffsetX = e.nativeEvent.contentOffset.x;
+    console.log(contentOffsetX);
     const currentIndex = Math.round(contentOffsetX / width);
     setCurrentSlideIndex(currentIndex);
   };
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "brown" }}>
       <FlatList
+        ref={ref}
         showsHorizontalScrollIndicator={false}
         horizontal
         data={slides}
@@ -89,12 +93,33 @@ export default function Onboarding() {
             />
           ))}
         </View>
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={() => ref?.current?.scrollToOffset({ offset: 372 })}
+          style={styles.btn}
+        >
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 15,
+            }}
+          >
+            NEXT
+          </Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  btn: {
+    height: 50,
+    borderRadius: 5,
+    backgroundColor: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   subtitle: {
     color: "white",
     fontSize: 13,
