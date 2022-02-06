@@ -40,6 +40,20 @@ export default function Onboarding() {
     const currentIndex = Math.round(contentOffsetX / width);
     setCurrentSlideIndex(currentIndex);
   };
+  const goToNextSlide = () => {
+    if (currentSlideIndex != slides.length - 1) {
+      ref?.current?.scrollToOffset({
+        offset: (currentSlideIndex + 1) * width,
+      });
+      setCurrentSlideIndex(currentSlideIndex + 1);
+    }
+  };
+  function skip() {
+    ref?.current?.scrollToOffset({
+      offset: slides.length * width,
+    });
+    setCurrentSlideIndex(slides.length - 1);
+  }
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "brown" }}>
       <FlatList
@@ -95,7 +109,7 @@ export default function Onboarding() {
         </View>
         <TouchableOpacity
           activeOpacity={0.8}
-          onPress={() => ref?.current?.scrollToOffset({ offset: 372 })}
+          onPress={goToNextSlide}
           style={styles.btn}
         >
           <Text
@@ -105,6 +119,16 @@ export default function Onboarding() {
             }}
           >
             NEXT
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity activeOpacity={0.8} onPress={skip} style={styles.btn}>
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 15,
+            }}
+          >
+            SKIP
           </Text>
         </TouchableOpacity>
       </View>
