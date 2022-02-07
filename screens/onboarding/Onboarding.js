@@ -33,7 +33,7 @@ const slides = [
   },
 ];
 
-export default function Onboarding() {
+export default function Onboarding({ navigation }) {
   const [currentSlideIndex, setCurrentSlideIndex] = React.useState(0);
   const ref = useRef();
   const updateCurrentSlideIndex = (e) => {
@@ -127,9 +127,23 @@ export default function Onboarding() {
                 alignItems: "center",
                 justifyContent: "center",
                 marginTop: 14,
+                shadowColor: "#000",
+                shadowOffset: {
+                  width: 0,
+                  height: 2,
+                },
+                shadowOpacity: 0.25,
+                shadowRadius: 3.84,
+
+                elevation: 5,
               }}
+              onPress={() => navigation.navigate("one")}
             >
-              <Text>Start banking</Text>
+              <Text
+                style={{ color: "#17288E", fontFamily: "helveticanuebold" }}
+              >
+                Start banking
+              </Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -147,17 +161,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   subtitle: {
-    color: "white",
-    fontSize: 13,
+    color: "#FAFAFA",
+    fontSize: 16,
     marginTop: 10,
     maxWidth: "70%",
     lineHeight: 23,
+    fontFamily: "helveticanuemedium",
   },
   title: {
     color: "white",
-    fontSize: 22,
-    fontWeight: "700",
+    fontSize: 18,
     marginTop: 20,
+    fontFamily: "stolzbold",
   },
   image: {
     height: "100%",
