@@ -5,10 +5,8 @@ import {
   SafeAreaView,
   FlatList,
   Dimensions,
-  Image,
   TouchableOpacity,
   ImageBackground,
-  ScrollView,
 } from "react-native";
 import React, { useRef } from "react";
 const { width, height } = Dimensions.get("window");
@@ -137,7 +135,7 @@ export default function Onboarding({ navigation }) {
 
                 elevation: 5,
               }}
-              onPress={() => navigation.navigate("one")}
+              onPress={() => navigation.navigate("profile")}
             >
               <Text
                 style={{ color: "#17288E", fontFamily: "helveticanuebold" }}

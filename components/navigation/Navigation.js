@@ -2,14 +2,7 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Onboarding from "../../screens/onboarding/Onboarding";
-
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Home Screen</Text>
-    </View>
-  );
-}
+import Profile from "../../screens/profile/Profile";
 
 const Stack = createNativeStackNavigator();
 export default function Navigation() {
@@ -22,7 +15,13 @@ export default function Navigation() {
           headerShown: false,
         }}
       />
-      <Stack.Screen name="one" component={HomeScreen} />
+      <Stack.Screen
+        name="profile"
+        component={Profile}
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack.Navigator>
   );
 }
