@@ -4572,6 +4572,11 @@ react-native-codegen@^0.0.6:
     jscodeshift "^0.11.0"
     nullthrows "^1.1.1"
 
+react-native-format-currency@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-format-currency/-/react-native-format-currency-0.0.1.tgz#65ad43baeeb0321bf4b0c35788f32e4c49879c3f"
+  integrity sha512-brmNUhQ5To0uV+Ff/d/bLYcwXN9toy9yqUG0ceO1ZLX+iwRrKdrfxX08eufUz08xp7Smjy46IiTXdLFQt52I+Q==
+
 react-native-safe-area-context@3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.3.2.tgz#9549a2ce580f2374edb05e49d661258d1b8bcaed"
