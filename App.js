@@ -1,5 +1,4 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, StatusBar } from "react-native";
 import Onboarding from "./screens/onboarding/Onboarding";
 import { NavigationContainer } from "@react-navigation/native";
 import Navigation from "./components/navigation/Navigation";
@@ -11,6 +10,7 @@ export default function App() {
     stolzbold: require("./assets/font/Stolzl-Bold.ttf"),
     helveticanuemedium: require("./assets/font/HelveticaNeueCyr-Light.otf"),
     helveticanuebold: require("./assets/font/HelveticaNeueCyr-Bold.otf"),
+    helveticanueheavy: require("./assets/font/HelveticaNeueCyr-Heavy.otf"),
   });
   if (!fontsLoaded) {
     return <AppLoading />;
@@ -29,6 +29,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
   },
 });

@@ -79,6 +79,7 @@ export default function Onboarding({ navigation }) {
               </View>
             </View>
           )}
+          keyExtractor={(item) => item.id}
         />
         <View
           style={{
