@@ -5,6 +5,9 @@ import {
   View,
   TouchableOpacity,
   StatusBar,
+  Image,
+  ScrollView,
+  FlatList,
 } from "react-native";
 import {
   formatCurrency,
@@ -12,8 +15,82 @@ import {
 } from "react-native-format-currency";
 
 export default function Profile() {
-  const [valueFormattedWithSymbol, valueFormattedWithoutSymbol, symbol] =
-    formatCurrency({ amount: Number(200000), code: "USD" });
+  const [valueFormattedWithSymbol] = formatCurrency({
+    amount: Number(200000),
+    code: "USD",
+  });
+  const users = [
+    {
+      id: 1,
+      name: "Adeboye Usman",
+      image: require("../../assets/user1.png"),
+      status: "received",
+      amount: 200000,
+    },
+    {
+      id: 2,
+      name: "Mercy Popoola",
+      image: require("../../assets/user2.png"),
+      status: "failed",
+      amount: 11000,
+    },
+    {
+      id: 3,
+      name: "Onome Adetayo",
+      image: require("../../assets/user3.png"),
+      status: "sent",
+      amount: 150000,
+    },
+    {
+      id: 4,
+      name: "Kingsley Abiodun",
+      image: require("../../assets/user4.png"),
+      status: "received",
+      amount: 20000,
+    },
+    {
+      id: 5,
+      name: "Adeboye Usman",
+      image: require("../../assets/user1.png"),
+      status: "received",
+      amount: 2000,
+    },
+    {
+      id: 6,
+      name: "Adeboye Usman",
+      image: require("../../assets/user1.png"),
+      status: "failed",
+      amount: 2000,
+    },
+    {
+      id: 7,
+      name: "Adeboye Usman",
+      image: require("../../assets/user2.png"),
+      status: "received",
+      amount: 2000,
+    },
+    {
+      id: 8,
+      name: "Adeboye Usman",
+      image: require("../../assets/user1.png"),
+      status: "received",
+      amount: 2000,
+    },
+    {
+      id: 9,
+      name: "Adeboye Usman",
+      image: require("../../assets/user1.png"),
+      status: "sent",
+      amount: 2000,
+    },
+    {
+      id: 10,
+      name: "Lara George",
+      image: require("../../assets/user2.png"),
+      status: "received",
+      amount: 2000000,
+    },
+  ];
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -45,6 +122,106 @@ export default function Profile() {
           </TouchableOpacity>
         </View>
       </View>
+      <View style={styles.body}>
+        <View style={styles.bar}></View>
+        <View style={{ ...styles.header, marginTop: 24, marginBottom: 32 }}>
+          <Text
+            style={{ ...styles.balancemessage, fontSize: 16, color: "#FFFFFF" }}
+          >
+            All Transactions
+          </Text>
+          {/* <Text style={styles.balancemessage}>All Transactions</Text> */}
+        </View>
+        <View contentContainerStyle={[styles.header, styles.useritem]}>
+          <FlatList
+            data={users}
+            contentContainerStyle={{
+              paddingBottom: 100,
+            }}
+            renderItem={({ item }) => (
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  width: "100%",
+                  alignItems: "center",
+                  paddingHorizontal: 16,
+                  height: 88,
+                  backgroundColor: item.id % 2 !== 0 && "#192259",
+                }}
+              >
+                <View style={{ flexDirection: "row" }}>
+                  <Image source={item.image} />
+                  <View style={{ marginLeft: 16 }}>
+                    <Text style={styles.username}>{item.name}</Text>
+                    <View
+                      style={{
+                        ...styles.status,
+                        backgroundColor:
+                          item.status == "failed"
+                            ? "#FE4A54"
+                            : item.status == "sent"
+                            ? "#FAAD39"
+                            : "#1DC7AC",
+                      }}
+                    >
+                      <View
+                        style={{
+                          backgroundColor: "white",
+                          width: 20,
+                          height: 20,
+                          borderRadius: 100,
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        {item.status == "failed" && (
+                          <Image source={require("../../assets/failed.png")} />
+                        )}
+                        {item.status == "sent" && (
+                          <Image source={require("../../assets/sent.png")} />
+                        )}
+                        {item.status == "received" && (
+                          <Image
+                            source={require("../../assets/received.png")}
+                          />
+                        )}
+                      </View>
+                      <Text style={{ ...styles.balancemessage, marginLeft: 5 }}>
+                        {item.status == "received" && "Received"}
+                        {item.status == "sent" && "Sent"}
+                        {item.status == "failed" && "Failed"}
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+                <View>
+                  <Text
+                    style={{
+                      ...styles.balancemain,
+                      color:
+                        item.status == "failed"
+                          ? "#FE4A54"
+                          : item.status == "sent"
+                          ? "#FAAD39"
+                          : "#1DC7AC",
+                      fontSize: 16,
+                    }}
+                  >
+                    {
+                      formatCurrency({
+                        amount: Number(item.amount),
+                        code: "USD",
+                      })[0]
+                    }
+                  </Text>
+                </View>
+              </View>
+            )}
+            keyExtractor={(item) => item.id}
+          />
+        </View>
+      </View>
     </View>
   );
 }
@@ -52,13 +229,13 @@ export default function Profile() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0E164D",
+    backgroundColor: "#010A43",
     paddingTop: StatusBar.currentHeight + 35,
-    paddingHorizontal: 16,
   },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
+    paddingHorizontal: 16,
   },
   button: {
     height: 48,
@@ -97,6 +274,8 @@ const styles = StyleSheet.create({
   },
   content: {
     marginTop: 48,
+    paddingHorizontal: 16,
+    marginBottom: 56,
   },
   balancemessage: {
     color: "#E7E4E4",
@@ -127,5 +306,42 @@ const styles = StyleSheet.create({
     color: "#464E8A",
     fontSize: 16,
     fontFamily: "helveticanuebold",
+  },
+  body: {
+    backgroundColor: "#10194E",
+    // height: "100%",
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
+    flex: 1,
+    paddingTop: 16,
+  },
+  bar: {
+    backgroundColor: "#4E589F",
+    width: 64,
+    height: 7,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    alignSelf: "center",
+  },
+  useritem: {
+    marginTop: 32,
+    width: "100%",
+    flexDirection: "column",
+  },
+  username: {
+    fontFamily: "helveticanueheavy",
+    color: "#858EC5",
+    fontSize: 16,
+  },
+  status: {
+    width: 87,
+    height: 30,
+    backgroundColor: "#1DC7AC",
+    borderRadius: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 4,
+    flexDirection: "row",
   },
 });
