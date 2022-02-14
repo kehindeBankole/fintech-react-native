@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -8,13 +8,17 @@ import {
   Image,
   ScrollView,
   FlatList,
+  Dimensions,
 } from "react-native";
 import {
   formatCurrency,
   getSupportedCurrencies,
 } from "react-native-format-currency";
+import RBSheet from "react-native-raw-bottom-sheet";
+import Sheet from "../../components/sheet/Sheet";
 
 export default function Profile() {
+  const refRBSheet = useRef();
   const [valueFormattedWithSymbol] = formatCurrency({
     amount: Number(200000),
     code: "USD",
@@ -91,6 +95,8 @@ export default function Profile() {
       amount: 2000000,
     },
   ];
+
+  const button = [1, 2, 3, 4, 5, 6, 7, 8, 9, ".", 0];
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -117,7 +123,10 @@ export default function Profile() {
           <TouchableOpacity style={styles.actionbutton}>
             <Text style={styles.actiontext}>Request money</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.actionbutton}>
+          <TouchableOpacity
+            style={styles.actionbutton}
+            onPress={() => refRBSheet.current.open()}
+          >
             <Text style={styles.actiontext}>Send money</Text>
           </TouchableOpacity>
         </View>
@@ -130,7 +139,6 @@ export default function Profile() {
           >
             All Transactions
           </Text>
-          {/* <Text style={styles.balancemessage}>All Transactions</Text> */}
         </View>
         <View contentContainerStyle={[styles.header, styles.useritem]}>
           <FlatList
@@ -222,6 +230,28 @@ export default function Profile() {
           />
         </View>
       </View>
+      <RBSheet
+        ref={refRBSheet}
+        closeOnDragDown={true}
+        closeOnPressMask={false}
+        customStyles={{
+          container: {
+            height: Dimensions.get("screen").height - 200,
+            backgroundColor: "#10194E",
+            borderTopLeftRadius: 40,
+            borderTopRightRadius: 40,
+            zIndex: -9999,
+            alignItems: "center",
+            flexDirection: "column",
+          },
+          draggableIcon: {
+            backgroundColor: "#FFFFFF",
+          },
+        }}
+        animationType={"slide"}
+      >
+        <Sheet button={button} />
+      </RBSheet>
     </View>
   );
 }
@@ -294,7 +324,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   actionbutton: {
-    width: 164,
+    width: "48%",
     borderRadius: 10,
     borderColor: "#464E8A",
     borderWidth: 1,
