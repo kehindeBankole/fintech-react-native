@@ -1,4 +1,10 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import { useState } from "react";
 import { formatCurrency } from "react-native-format-currency";
 import SvgComponent from "../../assets/svg";
@@ -28,13 +34,16 @@ export default function Sheet({ button }) {
               code: "USD",
             })[0]}
       </Text>
-      <View
-        style={{
+      <ScrollView
+        contentContainerStyle={{
           flexDirection: "row",
           flexWrap: "wrap",
           marginTop: "10%",
           width: "100%",
+          justifyContent: "center",
+          paddingBottom: 100,
         }}
+        showsVerticalScrollIndicator={false}
       >
         {[...button, <SvgComponent />].map((item, index) => (
           <TouchableOpacity
@@ -64,28 +73,27 @@ export default function Sheet({ button }) {
             </Text>
           </TouchableOpacity>
         ))}
-      </View>
-
-      <TouchableOpacity
-        style={{
-          backgroundColor: "#FF2E63",
-          height: 60,
-          width: 173,
-          borderRadius: 10,
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <Text
+        <TouchableOpacity
           style={{
-            color: "white",
-            fontFamily: "helveticanuebold",
-            fontSize: 16,
+            backgroundColor: "#FF2E63",
+            height: 60,
+            width: 173,
+            borderRadius: 10,
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          send money
-        </Text>
-      </TouchableOpacity>
+          <Text
+            style={{
+              color: "white",
+              fontFamily: "helveticanuebold",
+              fontSize: 16,
+            }}
+          >
+            send money
+          </Text>
+        </TouchableOpacity>
+      </ScrollView>
     </>
   );
 }
