@@ -27,11 +27,4 @@ export default function SendButton() {
   );
 }
 
-const styles = StyleSheet.create({
-  balancemain: {
-    color: "#EEEEEE",
-    fontFamily: "helveticanueheavy",
-    fontSize: 40,
-    marginTop: 24,
-  },
-});
+const styles = StyleSheet.create({});

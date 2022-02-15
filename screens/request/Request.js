@@ -149,4 +149,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "column",
   },
+  balancemain: {
+    color: "#EEEEEE",
+    fontFamily: "helveticanueheavy",
+    fontSize: 40,
+    marginTop: 24,
+  },
 });
