@@ -17,7 +17,7 @@ import {
 import RBSheet from "react-native-raw-bottom-sheet";
 import Sheet from "../../components/sheet/Sheet";
 
-export default function Profile() {
+export default function Profile({ navigation }) {
   const refRBSheet = useRef();
   const [valueFormattedWithSymbol] = formatCurrency({
     amount: Number(200000),
@@ -96,7 +96,7 @@ export default function Profile() {
     },
   ];
 
-  const button = [1, 2, 3, 4, 5, 6, 7, 8, 9, ".", 0];
+  const button = [1, 2, 3, 4, 5, 6, 7, 8, 9, " ", 0];
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -120,7 +120,10 @@ export default function Profile() {
         <Text style={styles.balancemessage}>Your current balance is</Text>
         <Text style={styles.balancemain}>{valueFormattedWithSymbol}</Text>
         <View style={styles.actionbuttonsection}>
-          <TouchableOpacity style={styles.actionbutton}>
+          <TouchableOpacity
+            style={styles.actionbutton}
+            onPress={() => navigation.navigate("request")}
+          >
             <Text style={styles.actiontext}>Request money</Text>
           </TouchableOpacity>
           <TouchableOpacity
