@@ -1,6 +1,6 @@
 # fintech-react-native
 
-<img src= "https://user-images.githubusercontent.com/33335391/154593949-357ce64f-713f-41ef-801f-49db78856998.png" />
+<img src= "https://user-images.githubusercontent.com/33335391/154593949-357ce64f-713f-41ef-801f-49db78856998.png" width='400' height='400' />
 
 
 <img src= "https://user-images.githubusercontent.com/33335391/154594034-3ceb1bda-7233-491d-9b2c-a0ff91742989.png" />
